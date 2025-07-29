@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -26,6 +26,16 @@
     color: #6f2c91;
     letter-spacing: 3px;
     text-shadow: 0 1px 3px rgba(111,44,145,0.5);
+  }
+
+  .tagline {
+    text-align: center;
+    color: #ff5c8d;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-top: 0.3rem;
+    margin-bottom: 1.5rem;
+    font-style: italic;
   }
 
   main {
@@ -107,43 +117,43 @@
 <body>
 
 <header>Chic &amp; Chill Finds</header>
+<div class="tagline">Chic Deals, Real Steals.</div>
 
 <main>
   <div class="product-list" id="product-list">
-    <!-- Produits insérés ici via JS -->
+    <!-- Products injected here -->
   </div>
 </main>
 
 <footer>
-  ✨ Des trouvailles Pinterest girl à prix mini - #aestheticvibes ✨
+  ✨ Your go-to spot for aesthetic finds at sweet prices ✨
 </footer>
 
 <script>
-  // Liste des produits : tu peux modifier ici les infos
   const products = [
     {
-      title: "Sac Bandoulière Rose Pastel",
-      price: "15,99 €",
+      title: "Pastel Pink Crossbody Bag",
+      price: "$15.99",
       image: "https://cdn.pixabay.com/photo/2017/09/05/21/47/handbag-2719872_1280.jpg",
-      url: "https://www.temu.com/sac-rose-pastel-affiliation"
+      url: "https://www.temu.com/pastel-pink-crossbody-bag-affiliate"
     },
     {
-      title: "Montre Minimaliste Blanche",
-      price: "12,50 €",
+      title: "Minimalist White Watch",
+      price: "$12.50",
       image: "https://cdn.pixabay.com/photo/2018/01/30/16/24/wristwatch-3115729_1280.jpg",
-      url: "https://www.shein.com/montre-minimaliste-blanche-affiliation"
+      url: "https://www.shein.com/minimalist-white-watch-affiliate"
     },
     {
-      title: "Lunettes de Soleil Oversize",
-      price: "9,90 €",
+      title: "Oversized Sunglasses",
+      price: "$9.90",
       image: "https://cdn.pixabay.com/photo/2016/03/27/19/13/sunglasses-1284417_1280.jpg",
-      url: "https://www.temu.com/lunettes-oversize-affiliation"
+      url: "https://www.temu.com/oversized-sunglasses-affiliate"
     },
     {
-      title: "T-shirt Crop Top Tie-Dye",
-      price: "8,99 €",
+      title: "Tie-Dye Crop Top",
+      price: "$8.99",
       image: "https://cdn.pixabay.com/photo/2017/03/27/14/56/t-shirt-2179226_1280.jpg",
-      url: "https://www.shein.com/t-shirt-crop-top-affiliation"
+      url: "https://www.shein.com/tie-dye-crop-top-affiliate"
     }
   ];
 
@@ -156,7 +166,7 @@
       <img src="${product.image}" alt="${product.title}" />
       <div class="product-title">${product.title}</div>
       <div class="product-price">${product.price}</div>
-      <button class="btn-buy" onclick="window.open('${product.url}', '_blank')">Voir & Acheter</button>
+      <button class="btn-buy" onclick="window.open('${product.url}', '_blank')">Shop Now</button>
     `;
     productList.appendChild(div);
   });
@@ -164,3 +174,4 @@
 
 </body>
 </html>
+

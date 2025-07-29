@@ -1,124 +1,240 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Boutique Girly</title>
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #fff0f5;
-      color: #333;
-      margin: 0;
-      padding: 20px;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Chic & Chill Finds</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;600&display=swap');
+
+  body {
+    margin: 0;
+    background: #fff7f8;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  header {
+    background: #ffcad4;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+    font-size: 2.5rem;
+    color: #6f2c91;
+    letter-spacing: 3px;
+    text-shadow: 0 1px 3px rgba(111,44,145,0.5);
+  }
+
+  .tagline {
+    text-align: center;
+    color: #ff5c8d;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-top: 0.3rem;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  main {
+    flex-grow: 1;
+    padding: 1.5rem 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .filters {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .filters select {
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .product-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .product {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(111,44,145,0.1);
+    padding: 1rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+
+  .product:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgba(111,44,145,0.3);
+  }
+
+  .product img {
+    max-width: 100%;
+    border-radius: 12px;
+    margin-bottom: 0.8rem;
+  }
+
+  .product-title {
+    font-weight: 600;
+    color: #6f2c91;
+    margin-bottom: 0.4rem;
+  }
+
+  .product-price {
+    color: #ff5c8d;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+  }
+
+  .btn-buy {
+    background: #6f2c91;
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .btn-buy:hover {
+    background: #904bbf;
+  }
+
+  footer {
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+    color: #999;
+  }
+
+  @media (max-width: 480px) {
+    .product-list {
+      grid-template-columns: 1fr;
     }
-    h1 {
-      text-align: center;
-      color: #d63384;
-    }
-    .filters {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
-    select {
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      background-color: #fff;
-      font-size: 14px;
-    }
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-    }
-    .product {
-      background-color: #fff;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      text-align: center;
-    }
-    .product img {
-      max-width: 100%;
-      border-radius: 8px;
-    }
-    .price {
-      color: #d63384;
-      font-weight: bold;
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
-  <h1>Ma Boutique Girly</h1>
+
+<header>Chic &amp; Chill Finds</header>
+<div class="tagline">Des bons plans chics, des vraies affaires !</div>
+
+<main>
   <div class="filters">
-    <select id="priceFilter">
-      <option value="">Trier par prix</option>
-      <option value="asc">Prix croissant</option>
-      <option value="desc">Prix décroissant</option>
+    <select id="price-filter">
+      <option value="all">Tous les prix</option>
+      <option value="low">Moins de 10€</option>
+      <option value="mid">10€ à 15€</option>
+      <option value="high">Plus de 15€</option>
     </select>
-    <select id="colorFilter">
-      <option value="">Filtrer par couleur</option>
+    <select id="color-filter">
+      <option value="all">Toutes les couleurs</option>
       <option value="rose">Rose</option>
       <option value="blanc">Blanc</option>
       <option value="noir">Noir</option>
     </select>
   </div>
-  <div class="products" id="productList">
-    <!-- Les produits seront insérés ici -->
+
+  <div class="product-list" id="product-list">
+    <!-- Produits injectés ici -->
   </div>
+</main>
 
-  <script>
-    const products = [
-      { name: "Sac rose pastel", price: 12.99, color: "rose", img: "https://via.placeholder.com/200x200/ffc0cb/ffffff?text=Sac" },
-      { name: "T-shirt blanc", price: 8.99, color: "blanc", img: "https://via.placeholder.com/200x200/ffffff/000000?text=T-shirt" },
-      { name: "Robe noire", price: 15.99, color: "noir", img: "https://via.placeholder.com/200x200/000000/ffffff?text=Robe" },
-      { name: "Top rose clair", price: 10.99, color: "rose", img: "https://via.placeholder.com/200x200/ffc0cb/000000?text=Top" },
-      { name: "Pantalon blanc", price: 14.49, color: "blanc", img: "https://via.placeholder.com/200x200/ffffff/000000?text=Pantalon" },
-      { name: "Sweat noir oversize", price: 18.99, color: "noir", img: "https://via.placeholder.com/200x200/000000/ffffff?text=Sweat" }
-    ];
+<footer>
+  ✨ Ton coin stylé pour dénicher des trouvailles esthétiques à prix doux ✨
+</footer>
 
-    const productList = document.getElementById("productList");
-    const priceFilter = document.getElementById("priceFilter");
-    const colorFilter = document.getElementById("colorFilter");
-
-    function renderProducts() {
-      let filteredProducts = [...products];
-
-      const color = colorFilter.value;
-      const sortByPrice = priceFilter.value;
-
-      if (color) {
-        filteredProducts = filteredProducts.filter(p => p.color === color);
-      }
-
-      if (sortByPrice === "asc") {
-        filteredProducts.sort((a, b) => a.price - b.price);
-      } else if (sortByPrice === "desc") {
-        filteredProducts.sort((a, b) => b.price - a.price);
-      }
-
-      productList.innerHTML = "";
-      filteredProducts.forEach(product => {
-        const productDiv = document.createElement("div");
-        productDiv.className = "product";
-        productDiv.innerHTML = `
-          <img src="${product.img}" alt="${product.name}">
-          <h3>${product.name}</h3>
-          <p class="price">${product.price.toFixed(2)} €</p>
-        `;
-        productList.appendChild(productDiv);
-      });
+<script>
+  const products = [
+    {
+      title: "Trousse pastel esthétique",
+      price: 15.99,
+      color: "rose",
+      image: "https://m.media-amazon.com/images/I/71tHfr4PDqL._AC_SX679_.jpg",
+      url: "https://amzn.to/3ISMOfo"
+    },
+    {
+      title: "Montre blanche minimaliste",
+      price: 12.50,
+      color: "blanc",
+      image: "https://cdn.pixabay.com/photo/2018/01/30/16/24/wristwatch-3115729_1280.jpg",
+      url: "https://www.shein.com/minimalist-white-watch-affiliate"
+    },
+    {
+      title: "Lunettes de soleil oversized",
+      price: 9.90,
+      color: "noir",
+      image: "https://cdn.pixabay.com/photo/2016/03/27/19/13/sunglasses-1284417_1280.jpg",
+      url: "https://www.temu.com/oversized-sunglasses-affiliate"
+    },
+    {
+      title: "Crop top tie-dye",
+      price: 8.99,
+      color: "rose",
+      image: "https://cdn.pixabay.com/photo/2017/03/27/14/56/t-shirt-2179226_1280.jpg",
+      url: "https://www.shein.com/tie-dye-crop-top-affiliate"
     }
+  ];
 
-    priceFilter.addEventListener("change", renderProducts);
-    colorFilter.addEventListener("change", renderProducts);
+  const productList = document.getElementById('product-list');
 
-    renderProducts();
-  </script>
+  function displayProducts(filter = {}) {
+    productList.innerHTML = '';
+    products
+      .filter(p => {
+        const { price, color } = filter;
+        const matchPrice = price === 'low' ? p.price < 10
+                          : price === 'mid' ? p.price >= 10 && p.price <= 15
+                          : price === 'high' ? p.price > 15
+                          : true;
+        const matchColor = color === 'all' || p.color === color;
+        return matchPrice && matchColor;
+      })
+      .forEach(product => {
+        const div = document.createElement('div');
+        div.className = 'product';
+        div.innerHTML = `
+          <img src="${product.image}" alt="${product.title}" />
+          <div class="product-title">${product.title}</div>
+          <div class="product-price">${product.price.toFixed(2)}€</div>
+          <button class="btn-buy" onclick="window.open('${product.url}', '_blank')">Acheter</button>
+        `;
+        productList.appendChild(div);
+      });
+  }
+
+  document.getElementById('price-filter').addEventListener('change', () => {
+    displayProducts({
+      price: document.getElementById('price-filter').value,
+      color: document.getElementById('color-filter').value
+    });
+  });
+
+  document.getElementById('color-filter').addEventListener('change', () => {
+    displayProducts({
+      price: document.getElementById('price-filter').value,
+      color: document.getElementById('color-filter').value
+    });
+  });
+
+  displayProducts();
+</script>
+
 </body>
 </html>
 

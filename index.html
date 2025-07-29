@@ -1,167 +1,28 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Chic & Chill Finds</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;600&display=swap');
-
-  body {
-    margin: 0;
-    background: #fff7f8;
-    font-family: 'Poppins', sans-serif;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-
-  header {
-    background: #ffcad4;
-    padding: 1.5rem 1rem;
-    text-align: center;
-    font-family: 'Pacifico', cursive;
-    font-size: 2.5rem;
-    color: #6f2c91;
-    letter-spacing: 3px;
-    text-shadow: 0 1px 3px rgba(111,44,145,0.5);
-  }
-
-  main {
-    flex-grow: 1;
-    padding: 1.5rem 1rem;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .product-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-  }
-
-  .product {
-    background: #fff;
-    border-radius: 15px;
-    box-shadow: 0 6px 12px rgba(111,44,145,0.1);
-    padding: 1rem;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-  }
-
-  .product:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 24px rgba(111,44,145,0.3);
-  }
-
-  .product img {
-    max-width: 100%;
-    border-radius: 12px;
-    margin-bottom: 0.8rem;
-  }
-
-  .product-title {
-    font-weight: 600;
-    color: #6f2c91;
-    margin-bottom: 0.4rem;
-  }
-
-  .product-price {
-    color: #ff5c8d;
-    font-weight: 600;
-    margin-bottom: 0.8rem;
-  }
-
-  .btn-buy {
-    background: #6f2c91;
-    color: #fff;
-    border: none;
-    padding: 0.6rem 1.2rem;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-
-  .btn-buy:hover {
-    background: #904bbf;
-  }
-
-  footer {
-    text-align: center;
-    padding: 1rem;
-    font-size: 0.9rem;
-    color: #999;
-  }
-
-  @media (max-width: 480px) {
-    .product-list {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
-</head>
+<head><meta charset="UTF-8" /><title>Test</title></head>
 <body>
+  <div id="product-list"></div>
 
-<header>Chic &amp; Chill Finds</header>
+  <script>
+    console.log('Script chargé');
+    const productList = document.getElementById('product-list');
+    console.log(productList);
 
-<main>
-  <div class="product-list" id="product-list">
-    <!-- Produits insérés ici via JS -->
-  </div>
-</main>
+    const products = [
+      { title: "Sac Rose", price: "15,99 €", image: "https://cdn.pixabay.com/photo/2017/09/05/21/47/handbag-2719872_1280.jpg", url: "https://temu.com" }
+    ];
 
-<footer>
-  ✨ Des trouvailles Pinterest girl à prix mini - #aestheticvibes ✨
-</footer>
-
-<script>
-  // Liste des produits : tu peux modifier ici les infos
-  const products = [
-    {
-      title: "Sac Bandoulière Rose Pastel",
-      price: "15,99 €",
-      image: "https://cdn.pixabay.com/photo/2017/09/05/21/47/handbag-2719872_1280.jpg",
-      url: "https://www.temu.com/sac-rose-pastel-affiliation"
-    },
-    {
-      title: "Montre Minimaliste Blanche",
-      price: "12,50 €",
-      image: "https://cdn.pixabay.com/photo/2018/01/30/16/24/wristwatch-3115729_1280.jpg",
-      url: "https://www.shein.com/montre-minimaliste-blanche-affiliation"
-    },
-    {
-      title: "Lunettes de Soleil Oversize",
-      price: "9,90 €",
-      image: "https://cdn.pixabay.com/photo/2016/03/27/19/13/sunglasses-1284417_1280.jpg",
-      url: "https://www.temu.com/lunettes-oversize-affiliation"
-    },
-    {
-      title: "T-shirt Crop Top Tie-Dye",
-      price: "8,99 €",
-      image: "https://cdn.pixabay.com/photo/2017/03/27/14/56/t-shirt-2179226_1280.jpg",
-      url: "https://www.shein.com/t-shirt-crop-top-affiliation"
-    }
-  ];
-
-  const productList = document.getElementById('product-list');
-
-  products.forEach(product => {
-    const div = document.createElement('div');
-    div.className = 'product';
-    div.innerHTML = `
-      <img src="${product.image}" alt="${product.title}" />
-      <div class="product-title">${product.title}</div>
-      <div class="product-price">${product.price}</div>
-      <button class="btn-buy" onclick="window.open('${product.url}', '_blank')">Voir & Acheter</button>
-    `;
-    productList.appendChild(div);
-  });
-</script>
-
+    products.forEach(product => {
+      const div = document.createElement('div');
+      div.innerHTML = `
+        <img src="${product.image}" alt="${product.title}" width="200" />
+        <h2>${product.title}</h2>
+        <p>${product.price}</p>
+        <button onclick="window.open('${product.url}', '_blank')">Voir & Acheter</button>
+      `;
+      productList.appendChild(div);
+    });
+  </script>
 </body>
 </html>
-

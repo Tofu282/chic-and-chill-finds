@@ -139,6 +139,8 @@
       <option value="cleangirl">Clean Girl</option>
       <option value="darkacademia">Dark Academia</option>
       <option value="lightacademia">Light Academia</option>
+      <option value="vintage">Vintage</option>
+      <option value="y2k">Y2K</option>
     </select>
 
     <select id="sortPrice">
@@ -162,11 +164,11 @@
 <script>
   const products = [
     {
-      title: "Sac Bandoulière Rose Pastel",
-      price: "15,99 €",
-      image: "https://cdn.pixabay.com/photo/2017/09/05/21/47/handbag-2719872_1280.jpg",
+      title: "Boucles d'Oreilles Pendantes Chic d'Inspiration Vintage avec Nœud Noir & Fausse Perle",
+      price: "0,83€",
+      image: "https://img.kwcdn.com/product/fancy/11dd1b6a-5a17-4211-81cc-82f75fb8649e.jpg?imageView2/2/w/800/q/70/format/webp",
       url: "https://www.temu.com/sac-rose-pastel-affiliation",
-      aesthetic: "cleangirl"
+      aesthetic: "vintage"
     },
     {
       title: "Montre Minimaliste Blanche",
@@ -188,6 +190,20 @@
       image: "https://cdn.pixabay.com/photo/2017/03/27/14/56/t-shirt-2179226_1280.jpg",
       url: "https://www.shein.com/t-shirt-crop-top-affiliation",
       aesthetic: "lightacademia"
+    },
+    {
+      title: "Jean Taille Basse Style Y2K",
+      price: "19,99 €",
+      image: "https://cdn.pixabay.com/photo/2016/02/19/10/00/jeans-1207463_1280.jpg",
+      url: "https://www.temu.com/jean-y2k-affiliation",
+      aesthetic: "y2k"
+    },
+    {
+      title: "Sac à Main Rétro en Cuir Vintage",
+      price: "29,99 €",
+      image: "https://cdn.pixabay.com/photo/2017/09/05/21/47/handbag-2719872_1280.jpg",
+      url: "https://www.shein.com/sac-vintage-affiliation",
+      aesthetic: "vintage"
     }
   ];
 
@@ -195,6 +211,11 @@
   const aestheticFilter = document.getElementById('aestheticFilter');
   const sortPrice = document.getElementById('sortPrice');
   const searchBar = document.getElementById('searchBar');
+
+  function parsePrice(priceStr) {
+    // Supprime tout sauf les chiffres et la virgule/point, remplace la virgule par un point pour convertir en float
+    return parseFloat(priceStr.replace(/[^\d,.-]/g, '').replace(',', '.')) || 0;
+  }
 
   function renderProducts() {
     const selectedAesthetic = aestheticFilter.value;
@@ -208,9 +229,9 @@
     });
 
     if (sortOption === 'asc') {
-      filtered.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+      filtered.sort((a, b) => parsePrice(a.price) - parsePrice(b.price));
     } else if (sortOption === 'desc') {
-      filtered.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+      filtered.sort((a, b) => parsePrice(b.price) - parsePrice(a.price));
     }
 
     productList.innerHTML = '';

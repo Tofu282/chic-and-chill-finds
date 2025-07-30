@@ -31,13 +31,13 @@
   main {
     flex-grow: 1;
     padding: 1.5rem 1rem;
-    max-width: 1000px;
+    max-width: 600px;
     margin: 0 auto;
   }
 
   .product-list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
   }
 
@@ -97,20 +97,6 @@
     color: #999;
   }
 
-  .disclaimer {
-    text-align: center;
-    font-size: 0.8rem;
-    color: #999;
-    margin-top: 1rem;
-    padding: 0 1rem;
-  }
-
-  @media (max-width: 768px) {
-    .product-list {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
   @media (max-width: 480px) {
     .product-list {
       grid-template-columns: 1fr;
@@ -130,9 +116,6 @@
 
 <footer>
   ✨ Des trouvailles Pinterest girl à prix mini - #aestheticvibes ✨
-  <div class="disclaimer">
-    Ce site contient des liens affiliés. Cela signifie que je peux toucher une petite commission si vous achetez via ces liens, sans frais supplémentaires pour vous.
-  </div>
 </footer>
 
 <script>
@@ -169,16 +152,18 @@
   products.forEach(product => {
     const div = document.createElement('div');
     div.className = 'product';
-    div.innerHTML = `
+    div.innerHTML = 
       <img src="${product.image}" alt="${product.title}" />
       <div class="product-title">${product.title}</div>
       <div class="product-price">${product.price}</div>
       <button class="btn-buy" onclick="window.open('${product.url}', '_blank')">Voir & Acheter</button>
-    `;
+    ;
     productList.appendChild(div);
   });
 </script>
 
 </body>
 </html>
+
+
 
